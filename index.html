@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- <meta charset="utf-8" shrink-to-fit=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Paiger</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    Pager
+  </a>
+</nav>
+    </header>
+    <br>
+
+    <div class="container-fluid">
+      <form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Pager ID</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+      <br>
+          <div class="form-group col-md-9">
+          <button type="button" class="btn btn-outline-info">Ok</button>
+          <button type="button" class="btn btn-outline-info">Te contacto luego</button>
+          <button type="button" class="btn btn-outline-info">En una reunion</button>
+          <button type="button" class="btn btn-outline-info">Emergencia</button>
+          </div>
+            <br>
+            <label for="Textarea1">Escriba su mensaje</label>
+            <textarea class="form-control" id="message" rows="8"></textarea>
+            <br>
+           <div class="form-group col-md-6">
+           <button id="submit_button" type="submit" class="btn btn-primary">Enviar</button>
+           </div>
+           </div>
+
+
+            <div class="form-group col-md-6">
+              <label class="sticker" for="inputPassword4">Conversación</label>
+              <div class="">
+                <div class="border border-secondary rounded rounded-lg">
+                  <div  class="alert alert-primary d-inline-flex p-2 bd-highlight col-md-9" role="alert">
+                    <p id="yo"></p>
+                  </div>
+                  <div id="el" class="alert alert-warning d-inline-flex p-2 bd-highlight" role="alert">
+                    A simple warning alert!
+                    </div>
+                  </div>
+              </div>
+              </div>
+</div>
+    </div>
+
+
+</form>
+
+    </div>
+    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- <script src="js/plugins.js"></script>
+<script src="js/main.js"></script> -->
+
+<script>
+  $(() => {
+
+    $("#submit_button").on("click", event => {
+
+      event.preventDefault();
+
+      const device_id = $("#device_id").val();
+      const message = $("#message").val();
+
+
+
+      $.get(`http://3.85.199.201:80/pager?device_id=${device_id}&message=${message}`, function( data ) {
+
+        if( data === "ok") {
+
+           alert("Message sent successfully");
+           document.getElementById("#yo").innerHTML = message;
+
+        } else {
+
+          alert(data);
+
+        }
+
+      });
+
+    });
+
+  });
+</script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+
+body {
+
+}
+
+
+.sticker {
+  display: block;
+  text-align: center;
+}
+
+.border .border-secondary .rounded .rounded-lg {
+  overflow: auto;
+}
+
+.alert {
+margin-top: 4%;
+margin-bottom: 2%;
+margin-left: 2%
+}

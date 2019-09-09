@@ -6,13 +6,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <title>Paiger</title>
+    <title>Pager</title>
   </head>
   <body>
     <header>
       <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="#">
-    <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    <!-- <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
     Pager
   </a>
 </nav>
@@ -23,20 +23,20 @@
       <form>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Pager ID</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+      <label for="device_id">Pager ID</label>
+      <select class="form-control" id="device_id">
+        <option>0080000004018665</option>
+        <option>0080000004018667</option>
+        <option>0080000004018668</option>
+        <option>0080000004018675</option>
+        <option>008000000400B6EA</option>
       </select>
       <br>
           <div class="form-group col-md-9">
-          <button type="button" class="btn btn-outline-info">Ok</button>
-          <button type="button" class="btn btn-outline-info">Te contacto luego</button>
-          <button type="button" class="btn btn-outline-info">En una reunion</button>
-          <button type="button" class="btn btn-outline-info">Emergencia</button>
+          <button type="submit" class="btn btn-outline-info" id="submit1" value=">Ok">Ok</button>
+          <button type="submit" class="btn btn-outline-info" id="submit2" value=">Te contacto luego">Te contacto luego</button>
+          <button type="submit" class="btn btn-outline-info" id="submit3" value=">En una reunion">En una reunion</button>
+          <button type="submit" class="btn btn-outline-info" id="submit4" value=">Emergencia">Emergencia</button>
           </div>
             <br>
             <label for="Textarea1">Escriba su mensaje</label>
@@ -47,17 +47,18 @@
            </div>
            </div>
 
-
+                <button type="submit" id="temp" name="button">temporal</button>
             <div class="form-group col-md-6">
               <label class="sticker" for="inputPassword4">Conversación</label>
               <div class="">
                 <div class="border border-secondary rounded rounded-lg">
-                  <div  class="alert alert-primary d-inline-flex p-2 bd-highlight col-md-9" role="alert">
-                    <p id="yo"></p>
-                  </div>
-                  <div id="el" class="alert alert-warning d-inline-flex p-2 bd-highlight" role="alert">
-                    A simple warning alert!
-                    </div>
+                  <ol id="yo">
+                    <li ></li>
+                  </ol>
+                        <ol id="pg">
+                          <li ></li>
+                        </ol>
+
                   </div>
               </div>
               </div>
@@ -78,8 +79,8 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<!-- <script src="js/plugins.js"></script>
-<script src="js/main.js"></script> -->
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
 
 <script>
   $(() => {
@@ -93,12 +94,18 @@
 
 
 
-      $.get(`http://3.85.199.201:80/pager?device_id=${device_id}&message=${message}`, function( data ) {
+      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
 
         if( data === "ok") {
 
-           alert("Message sent successfully");
-           document.getElementById("#yo").innerHTML = message;
+           // alert("Message sent successfully");
+           var lista = document.getElementById("yo");
+           lista.style.display = "block";
+           var newLi = document.createElement("li");
+           var msn = "Yo:"+' '+ message;
+           newLi.append(msn);
+           lista.appendChild(newLi);
+           $("#message").val("");
 
         } else {
 
@@ -110,6 +117,170 @@
 
     });
 
+    $("#submit1").on("click", event => {
+
+      event.preventDefault();
+
+      const device_id = $("#device_id").val();
+      const message = $("#submit1").val();
+
+
+
+      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+        if( data === "ok") {
+
+           // alert("Message sent successfully");
+           var lista = document.getElementById("yo");
+           lista.style.display = "block";
+           var newLi = document.createElement("li");
+           var msn = "Yo:"+' '+ message;
+           newLi.append(msn);
+           lista.appendChild(newLi);
+           $("#message").val("");
+
+        } else {
+
+          alert(data);
+
+        }
+
+      });
+
+    });
+
+    $("#submit2").on("click", event => {
+
+      event.preventDefault();
+
+      const device_id = $("#device_id").val();
+      const message = $("#submit2").val();
+
+
+
+      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+        if( data === "ok") {
+
+           // alert("Message sent successfully");
+           var lista = document.getElementById("yo");
+           lista.style.display = "block";
+           var newLi = document.createElement("li");
+           var msn = "Yo:"+' '+ message;
+           newLi.append(msn);
+           lista.appendChild(newLi);
+           $("#message").val("");
+
+        } else {
+
+          alert(data);
+
+        }
+
+      });
+
+    });
+
+    $("#submit3").on("click", event => {
+
+      event.preventDefault();
+
+      const device_id = $("#device_id").val();
+      const message = $("#submit3").val();
+
+
+
+      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+        if( data === "ok") {
+
+           // alert("Message sent successfully");
+           var lista = document.getElementById("yo");
+           lista.style.display = "block";
+           var newLi = document.createElement("li");
+           var msn = "Yo:"+' '+ message;
+           newLi.append(msn);
+           lista.appendChild(newLi);
+           $("#message").val("");
+
+        } else {
+
+          alert(data);
+
+        }
+
+      });
+
+    });
+
+    $("#submit4").on("click", event => {
+
+      event.preventDefault();
+
+      const device_id = $("#device_id").val();
+      const message = $("#submit4").val();
+
+
+
+      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+        if( data === "ok") {
+
+           // alert("Message sent successfully");
+           var lista = document.getElementById("yo");
+           lista.style.display = "block";
+           var newLi = document.createElement("li");
+           var msn = "Yo:"+' '+ message;
+           newLi.append(msn);
+           lista.appendChild(newLi);
+           $("#message").val("");
+
+        } else {
+
+          alert(data);
+
+        }
+
+      });
+
+    });
+
+    $("#temp").on("click", event => {
+
+      event.preventDefault();
+
+      const device_id = $("#device_id").val();
+      const message = $("#message").val();
+
+
+
+      $.get(`http://3.85.199.201:80/pagerUplinks?device_id=${device_id}`, function(data) {
+
+        var recibido = data.split("|");
+
+        var longitud = recibido.length;
+        recibido.forEach(myFunction);
+        function myFunction(item, index) {
+          console.log(index,item);
+
+}
+      });
+           // alert("Message sent successfully");
+      //      var lista = document.getElementById("yo");
+      //      lista.style.display = "block";
+      //      var newLi = document.createElement("li");
+      //      var msn = "Yo:"+' '+ message;
+      //      newLi.append(msn);
+      //      lista.appendChild(newLi);
+      //      $("#message").val("");
+      //
+      //   } else {
+      //
+      //     alert(data);
+      //
+      //   }
+      //
+      });
   });
 </script>
   </body>

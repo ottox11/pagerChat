@@ -1,75 +1,85 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <!-- <meta charset="utf-8" shrink-to-fit=no"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Pager</title>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <!-- <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
-    Pager
-  </a>
-</nav>
-    </header>
-    <br>
+<html lang="en">
+<head>
+  <title>Pager Chat</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="container-fluid">
-      <form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="device_id">Pager ID</label>
-      <select class="form-control" id="device_id">
-        <option>0080000004018665</option>
-        <option>0080000004018667</option>
-        <option>0080000004018668</option>
-        <option>0080000004018675</option>
-        <option>008000000400B6EA</option>
-      </select>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style3.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</head>
+<body>
+
+<div class="messaging">
+  <div class="inbox_msg">
+	<div class="inbox_people">
+	  <div class="headind_srch">
+		<div class="logo">
+		<img src="img/LogoSmartium2.png" alt="LogoSmartium">
+		</div>
+	  </div>
+	  <div class="inbox_chat scroll">
+		<div class="chat_list active_chat">
+		  <div class="chat_people">
+			<div class="chat_img"> <img src="img/pager3.png" alt="sunil"> </div>
+			 <div class="chat_ib">
+			  <label for="device_id">Pager ID</label>
+        <select class="pager" id="device_id">
+          <option>0080000004018665</option>
+          <option>0080000004018667</option>
+          <option>0080000004018668</option>
+          <option>0080000004018675</option>
+          <option>008000000400B6EA</option>
+        </select>
+			</div>
+		  </div>
+		</div>
+    <label for="device_id" class="titulo_msn">Mensajes predefinidos</label>
+    <div class="form-group col-md-9">
+    <button type="submit" class="boton_msn" id="submit1" value=">Ok">Ok</button>
+    <button type="submit" class="boton_msn" id="submit2" value=">Te contacto luego">Te contacto luego</button>
+    <button type="submit" class="boton_msn" id="submit3" value=">En una reunion">En una reunión</button>
+    <button type="submit" class="boton_msn" id="submit4" value=">Emergencia">Emergencia</button>
+    </div>
+	  </div>
+	</div>
+	<div class="mesgs container">
+	  <div class="msg_history row">
+      <ol id="yo" class="col yoChat">
+      <div class="incoming_msg">
+		  <div class="incoming_msg_img" id="persona"> <img src="img/persona.png" alt="sunil"> </div>
       <br>
-          <div class="form-group col-md-9">
-          <button type="submit" class="btn btn-outline-info" id="submit1" value=">Ok">Ok</button>
-          <button type="submit" class="btn btn-outline-info" id="submit2" value=">Te contacto luego">Te contacto luego</button>
-          <button type="submit" class="btn btn-outline-info" id="submit3" value=">En una reunion">En una reunion</button>
-          <button type="submit" class="btn btn-outline-info" id="submit4" value=">Emergencia">Emergencia</button>
-          </div>
-            <br>
-            <label for="Textarea1">Escriba su mensaje</label>
-            <textarea class="form-control" id="message" rows="8"></textarea>
-            <br>
-           <div class="form-group col-md-6">
-           <button id="submit_button" type="submit" class="btn btn-primary">Enviar</button>
-           </div>
-           </div>
+      </div>
+		  </ol>
 
-                <button type="submit" id="temp" name="button">temporal</button>
-            <div class="form-group col-md-6">
-              <label class="sticker" for="inputPassword4">Conversación</label>
-              <div class="">
-                <div class="border border-secondary rounded rounded-lg">
-                  <ol id="yo">
-                    <li ></li>
-                  </ol>
-                        <ol id="pg">
-                          <li ></li>
-                        </ol>
-
-                  </div>
-              </div>
-              </div>
+      <ol id="pg" class="col pgChat">
+        <div class="">
+		       <div class="incoming_msg">
+            <div class="incoming_msg_img"> <img src="img/pager3.png" alt="sunil"> </div>
+		    </div>
+          <!-- </div> -->
+     </ol>
+		</div>
+	  <div class="type_msg">
+		<div class="input_msg_write">
+		  <input type="text" class="write_msg" id="message" placeholder="Escriba su mensaje (Max. 38 caracteres)" maxlength="38" />
+		  <button class="msg_send_btn" type="submit" id="submit_button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+		</div>
+	  </div>
+	</div>
+  </div>
 </div>
-    </div>
 
-
-</form>
-
-    </div>
-    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+<script src="js/vendor/modernizr-3.7.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
 
@@ -83,205 +93,225 @@
 <script src="js/main.js"></script>
 
 <script>
-  $(() => {
+$(() => {
+var ultimo = 0;
+$("#submit_button").on("click", event => {
 
-    $("#submit_button").on("click", event => {
+  event.preventDefault();
 
-      event.preventDefault();
+  const device_id = $("#device_id").val();
+  const message = ">" + $("#message").val();
 
-      const device_id = $("#device_id").val();
-      const message = $("#message").val();
 
 
+  $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
 
-      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+    if( data === "ok") {
 
-        if( data === "ok") {
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+       var msn = "Yo:"+' '+ message.substring(1,message.length);
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
 
-           // alert("Message sent successfully");
-           var lista = document.getElementById("yo");
-           lista.style.display = "block";
-           var newLi = document.createElement("li");
-           var msn = "Yo:"+' '+ message;
-           newLi.append(msn);
-           lista.appendChild(newLi);
-           $("#message").val("");
+    } else {
 
-        } else {
+      alert(data);
 
-          alert(data);
+    }
 
-        }
-
-      });
-
-    });
-
-    $("#submit1").on("click", event => {
-
-      event.preventDefault();
-
-      const device_id = $("#device_id").val();
-      const message = $("#submit1").val();
-
-
-
-      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
-
-        if( data === "ok") {
-
-           // alert("Message sent successfully");
-           var lista = document.getElementById("yo");
-           lista.style.display = "block";
-           var newLi = document.createElement("li");
-           var msn = "Yo:"+' '+ message;
-           newLi.append(msn);
-           lista.appendChild(newLi);
-           $("#message").val("");
-
-        } else {
-
-          alert(data);
-
-        }
-
-      });
-
-    });
-
-    $("#submit2").on("click", event => {
-
-      event.preventDefault();
-
-      const device_id = $("#device_id").val();
-      const message = $("#submit2").val();
-
-
-
-      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
-
-        if( data === "ok") {
-
-           // alert("Message sent successfully");
-           var lista = document.getElementById("yo");
-           lista.style.display = "block";
-           var newLi = document.createElement("li");
-           var msn = "Yo:"+' '+ message;
-           newLi.append(msn);
-           lista.appendChild(newLi);
-           $("#message").val("");
-
-        } else {
-
-          alert(data);
-
-        }
-
-      });
-
-    });
-
-    $("#submit3").on("click", event => {
-
-      event.preventDefault();
-
-      const device_id = $("#device_id").val();
-      const message = $("#submit3").val();
-
-
-
-      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
-
-        if( data === "ok") {
-
-           // alert("Message sent successfully");
-           var lista = document.getElementById("yo");
-           lista.style.display = "block";
-           var newLi = document.createElement("li");
-           var msn = "Yo:"+' '+ message;
-           newLi.append(msn);
-           lista.appendChild(newLi);
-           $("#message").val("");
-
-        } else {
-
-          alert(data);
-
-        }
-
-      });
-
-    });
-
-    $("#submit4").on("click", event => {
-
-      event.preventDefault();
-
-      const device_id = $("#device_id").val();
-      const message = $("#submit4").val();
-
-
-
-      $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
-
-        if( data === "ok") {
-
-           // alert("Message sent successfully");
-           var lista = document.getElementById("yo");
-           lista.style.display = "block";
-           var newLi = document.createElement("li");
-           var msn = "Yo:"+' '+ message;
-           newLi.append(msn);
-           lista.appendChild(newLi);
-           $("#message").val("");
-
-        } else {
-
-          alert(data);
-
-        }
-
-      });
-
-    });
-
-    $("#temp").on("click", event => {
-
-      event.preventDefault();
-
-      const device_id = $("#device_id").val();
-      const message = $("#message").val();
-
-
-
-      $.get(`http://3.85.199.201:80/pagerUplinks?device_id=${device_id}`, function(data) {
-
-        var recibido = data.split("|");
-
-        var longitud = recibido.length;
-        recibido.forEach(myFunction);
-        function myFunction(item, index) {
-          console.log(index,item);
-
-}
-      });
-           // alert("Message sent successfully");
-      //      var lista = document.getElementById("yo");
-      //      lista.style.display = "block";
-      //      var newLi = document.createElement("li");
-      //      var msn = "Yo:"+' '+ message;
-      //      newLi.append(msn);
-      //      lista.appendChild(newLi);
-      //      $("#message").val("");
-      //
-      //   } else {
-      //
-      //     alert(data);
-      //
-      //   }
-      //
-      });
   });
+
+});
+
+$("#submit1").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  const message = $("#submit1").val();
+
+
+
+  $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+    if( data === "ok") {
+
+       // alert("Message sent successfully");
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+       var msn = "Yo:"+' '+ message;
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
+
+    } else {
+
+      alert(data);
+
+    }
+
+  });
+
+});
+
+$("#submit2").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  const message = $("#submit2").val();
+
+
+
+  $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+    if( data === "ok") {
+
+       // alert("Message sent successfully");
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+       var msn = "Yo:"+' '+ message;
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
+
+    } else {
+
+      alert(data);
+
+    }
+
+  });
+
+});
+
+$("#submit3").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  const message = $("#submit3").val();
+
+
+
+  $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+    if( data === "ok") {
+
+       // alert("Message sent successfully");
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+       var msn = "Yo:"+' '+ message;
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
+
+    } else {
+
+      alert(data);
+
+    }
+
+  });
+
+});
+
+$("#submit4").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  const message = $("#submit4").val();
+
+
+
+  $.get(`http://3.85.199.201:80/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+    if( data === "ok") {
+
+       // alert("Message sent successfully");
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+       var msn = "Yo:"+' '+ message;
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
+
+    } else {
+
+      alert(data);
+
+    }
+
+  });
+
+});
+
+// function escuchar() {
+  setInterval(function(){
+
+
+  // event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  // const message = $("#message").val();
+
+  $.get(`http://3.85.199.201:80/pagerUplinks?device_id=${device_id}`, function(data) {
+
+    var recibido = data.split("|");
+    if(ultimo != (recibido.length - 1)){
+      // recibido.forEach(myFunction);
+      // function myFunction(item, index) {
+
+      for (var i = ultimo; i < recibido.length - 1; i ++) {
+        var lista2 = document.getElementById("pg");
+        lista2.style.display = "block";
+        var newLi = document.createElement("li");
+        var msn2 = "Pager:"+' '+ recibido[i];
+        newLi.append(msn2);
+        lista2.appendChild(newLi);
+      }
+    }
+    ultimo = recibido.length - 1;
+    // var longitud = recibido.length;
+    // recibido.forEach(myFunction);
+    // function myFunction(item, index) {
+      // console.log(recibido);
+      // $("#message").val("");
+
+// }
+  })
+ }, 3000);
+ // window.setInterval("escuchar()",3000);
+
+       // alert("Message sent successfully");
+  //      var lista = document.getElementById("yo");
+  //      lista.style.display = "block";
+  //      var newLi = document.createElement("li");
+  //      var msn = "Yo:"+' '+ message;
+  //      newLi.append(msn);
+  //      lista.appendChild(newLi);
+  //      $("#message").val("");
+  //
+  //   } else {
+  //
+  //     alert(data);
+  //
+  //   }
+  //
+// });
+});
 </script>
-  </body>
+</body>
+</html>
+
+
+</body>
 </html>

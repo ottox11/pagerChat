@@ -1,0 +1,327 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Pager Chat</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=900px, initial-scale=1">
+  <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style3.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</head>
+<body>
+
+<div class="messaging">
+  <div class="inbox_msg">
+	<div class="inbox_people">
+	  <div class="headind_srch">
+		<div class="logo">
+		<img src="img/LogoSmartium2.png" alt="LogoSmartium">
+		</div>
+	  </div>
+	  <div class="inbox_chat scroll">
+		<div class="chat_list active_chat">
+		  <div class="chat_people">
+			<div class="chat_img"> <img src="img/pager3.png" alt="sunil"> </div>
+			 <div class="chat_ib">
+			  <label for="device_id">Pager ID</label>
+        <select class="pager" id="device_id">
+          <option>0080000004018665</option>
+          <option>0080000004018667</option>
+          <option>0080000004018668</option>
+          <option>0080000004018675</option>
+          </select>
+			</div>
+		  </div>
+		</div>
+    <label for="device_id" class="titulo_msn">Mensajes predefinidos</label>
+    <div class="form-group col-md-9">
+    <button type="submit" class="boton_msn" id="submit1" value=">Ok">Ok</button>
+    <button type="submit" class="boton_msn" id="submit2" value=">Te contacto luego">Te contacto luego</button>
+    <button type="submit" class="boton_msn" id="submit3" value=">En una reunion">En una reunión</button>
+    <button type="submit" class="boton_msn" id="submit4" value=">Emergencia">Emergencia</button>
+    </div>
+	  </div>
+    <button type="button" id="reset_data" class="btn btn-danger">Borrar historial de conversación</button>
+	</div>
+	<div class="mesgs container">
+	  <div class="msg_history row">
+      <ol id="yo" class="col yoChat">
+        <div class="incoming_msg">
+		    <div class="incoming_msg_img" id="persona"> <img src="img/persona.png" alt="sunil"> </div>
+        <br>
+       </div>
+	    </ol>
+
+      <ol id="pg" class="col pgChat">
+        <div class="">
+		       <div class="incoming_msg">
+            <div class="incoming_msg_img"> <img src="img/pager3.png" alt="sunil"> </div>
+            </div>
+     </ol>
+		</div>
+	  <div class="type_msg">
+		<div class="input_msg_write">
+		  <input type="text" class="write_msg" id="message" placeholder="Escriba su mensaje (Max. 38 caracteres)" maxlength="38" />
+		  <button class="msg_send_btn" type="submit" id="submit_button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+		</div>
+	  </div>
+	</div>
+  </div>
+        <audio id="audio" controls>
+          <source type="audio/mp3" src="http://www.noiseaddicts.com/samples_1w72b820/3724.mp3">
+          </audio>
+</div>
+
+<script src="js/vendor/modernizr-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<script src='https://code.jquery.com/jquery-2.2.0.min.js'></script>
+<script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
+
+<script>
+$(() => {
+
+  var dateConstructor = new Date();
+// dateConstructor.setHours(dateConstructor.getHours() - 3);  // Para Cambiar a GMT-3
+				var date = dateConstructor.toLocaleString();
+
+var ultimo = 0;
+$("#submit_button").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  const message = ">" + $("#message").val();
+
+
+
+  $.get(`http://3.85.199.201:12000/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+    if( data === "ok") {
+
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+       var msn = date + ":" +' '+ message.substring(1,message.length);
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
+
+    } else {
+
+      alert(data);
+
+    }
+
+  });
+
+});
+
+$("#submit1").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  const message = $("#submit1").val();
+
+
+
+  $.get(`http://3.85.199.201:12000/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+    if( data === "ok") {
+
+       // alert("Message sent successfully");
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+       var msn = date + ":" +' '+ message.substring(1,message.length);
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
+
+    } else {
+
+      alert(data);
+
+    }
+
+  });
+
+});
+
+$("#submit2").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  const message = $("#submit2").val();
+
+
+
+  $.get(`http://3.85.199.201:12000/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+    if( data === "ok") {
+
+       // alert("Message sent successfully");
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+      var msn = date + ":" +' '+ message.substring(1,message.length);
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
+
+    } else {
+
+      alert(data);
+
+    }
+
+  });
+
+});
+
+$("#submit3").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  const message = $("#submit3").val();
+
+
+
+  $.get(`http://3.85.199.201:12000/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+    if( data === "ok") {
+
+       // alert("Message sent successfully");
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+       var msn = date + ":" +' '+ message.substring(1,message.length);
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
+
+    } else {
+
+      alert(data);
+
+    }
+
+  });
+
+});
+
+$("#submit4").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  const message = $("#submit4").val();
+
+
+
+  $.get(`http://3.85.199.201:12000/pagerDownlink?device_id=${device_id}&message=${message}`, function( data ) {
+
+    if( data === "ok") {
+
+       // alert("Message sent successfully");
+       var lista = document.getElementById("yo");
+       lista.style.display = "block";
+       var newLi = document.createElement("li");
+       var msn = date + ":" +' '+ message.substring(1,message.length);
+       newLi.append(msn);
+       lista.appendChild(newLi);
+       $("#message").val("");
+
+    } else {
+
+      alert(data);
+
+    }
+
+  });
+
+});
+
+// function escuchar() {
+  setInterval(function(){
+
+
+  // event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  // const message = $("#message").val();
+
+  $.get(`http://3.85.199.201:12000/pagerUplinks?device_id=${device_id}`, function(data) {
+
+    var recibido = data.split("|");
+    if(ultimo != (recibido.length - 1)){
+
+      for (var i = ultimo; i < recibido.length - 1; i ++) {
+        var lista2 = document.getElementById("pg");
+        lista2.style.display = "block";
+        var newLi = document.createElement("li");
+        var msn2 = recibido[i];
+        newLi.append(msn2);
+        lista2.appendChild(newLi);
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+    }
+    ultimo = recibido.length - 1;
+
+  })
+ }, 3000);
+
+ const selectElement = document.querySelector(".pager");
+
+selectElement.addEventListener('change', (event) => {
+  var historial = document.getElementsByTagName("li");
+  console.log(historial);
+  for (var i = historial.length; i--; ) { historial[i].remove(); }
+
+
+});
+
+$("#reset_data").on("click", event => {
+
+  event.preventDefault();
+
+  const device_id = $("#device_id").val();
+  $.get(`http://3.85.199.201:12000/pagerReset?device_id=${device_id}`, function(data) {
+    var ultimo = 0;
+    var historial = document.getElementsByTagName("li");
+    for (var i = historial.length; i--; ) { historial[i].remove(); }
+  });
+});
+
+
+});
+</script>
+</body>
+</html>
+
+
+</body>
+</html>

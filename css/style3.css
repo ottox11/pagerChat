@@ -1,4 +1,7 @@
 /*---------chat window---------------*/
+@-ms-viewport{
+  width: device-width;
+}
 .container{
     max-width:900px;
 }
@@ -127,7 +130,8 @@
 	display: inline-block;
 	width: 10%;
   margin-left: 40px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .incoming_msg {
@@ -292,13 +296,14 @@ height: auto;
   padding-top: 8px;
 }
 
-/* ol.col.yoChat {
-
-   border: 1px solid #036937;
-   mar
+#audio{
+display: none
 }
 
-ol.col.pgChat {
-   border: 1px solid #036937;
-
-} */
+#reset_data {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom:6px;
+    outline:none;
+}
